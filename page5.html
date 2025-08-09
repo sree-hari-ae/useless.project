@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Step 5: Enter Result</title>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #fffbe6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #444;
+    text-align: center;
+  }
+  .container {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(255, 223, 93, 0.6);
+    max-width: 400px;
+    width: 100%;
+  }
+  h2 {
+    color: #f7b733;
+    margin-bottom: 20px;
+  }
+  input[type=number] {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 2px solid #f7b733;
+    font-size: 1.1rem;
+    outline: none;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #b27300;
+    background: #fff8cc;
+    transition: border-color 0.3s ease;
+  }
+  input[type=number]:focus {
+    border-color: #f7b733;
+    box-shadow: 0 0 8px #f7b733aa;
+  }
+  input[type=number]::placeholder {
+    color: #d6b200;
+  }
+  button {
+    background: #f7b733;
+    border: none;
+    padding: 14px 0;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: #5a3e00;
+    box-shadow: 0 5px 15px rgba(247, 183, 51, 0.6);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  button:hover {
+    background: #fcd850;
+    transform: translateY(-3px);
+  }
+  button:active {
+    transform: translateY(1px);
+  }
+  #result {
+    margin-top: 28px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #f7b733;
+    min-height: 40px;
+    text-shadow: 0 1px 4px #b27300bb;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Step 5</h2>
+    <p>Enter the final result and click "Guess Your Number"</p>
+    <input type="number" id="finalResult" placeholder="Enter your final result" min="1" max="100" />
+    <button id="guessBtn">Guess Your Number</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    document.getElementById('guessBtn').addEventListener('click', () => {
+      const final = Number(document.getElementById('finalResult').value);
+      if (isNaN(final) || final === 0) {
+        alert('Please enter a valid number.');
+        return;
+      }
+
+      const original = (final * 3 - 15) / 3;
+
+      if (original < 1 || original > 50 || !Number.isInteger(original)) {
+        document.getElementById('result').textContent = "Hmm, are you sure you followed the steps correctly?";
+      } else {
+        document.getElementById('result').textContent = `Your original number was ${original}! 🎉`;
+      }
+    });
+  </script>
+</body>
+</html>
